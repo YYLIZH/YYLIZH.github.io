@@ -30,11 +30,25 @@
         }
 
         function drawCard() {
-            var card_scene = JSON.parse(GetJson("https://yylizh.github.io/static/category.json"));
+            var R_card_scene = JSON.parse(GetJson("https://yylizh.github.io/static/R_category.json"));
+            var SR_card_scene = JSON.parse(GetJson("https://yylizh.github.io/static/SR_category.json"));
+            var SSR_card_scene = JSON.parse(GetJson("https://yylizh.github.io/static/SSR_category.json"));
             var card_type = JSON.parse(GetJson("https://yylizh.github.io/static/cardType.json"));
             var leng = getJsonLength(card_type);
-            var number = getRandom(leng);
+            var number = getRandom(100);
+            var card = card_type[number];
+            if (card=="R"){
+                var output = R_card_scene[getRandom(getJsonLength(R_card_scene))];
+            }
+            else if (card=="SR"){
+                var output = SR_card_scene[getRandom(getJsonLength(SR_card_scene))];
+            }
+            else {
+                var output = SSR_card_scene[getRandom(getJsonLength(SSR_card_scene))];
+            }
+            return output;
         }
+        
 
 
         function one() {
@@ -42,11 +56,7 @@
             single_draw.style.visibility = 'visible';
             ten_draw = document.getElementById('table_results');
             ten_draw.style.visibility = 'hidden';
-            var url = "https://yylizh.github.io/static/category.json";
-            var category = JSON.parse(GetJson(url));
-            var leng = getJsonLength(category);
-            var number = getRandom(leng);
-            single_draw.src = "." + category[number];
+            single_draw.src = "." + drawCard();
         }
 
 
@@ -58,15 +68,11 @@
             ten_draw = document.getElementById('table_results');
             ten_draw.style.visibility = 'visible';
             var array = new Array("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
-            var url = "https://yylizh.github.io/static/category.json";
-            var category = JSON.parse(GetJson(url));
-            var leng = getJsonLength(category);
             var i = 0;
             while (i < 10) {
-                var number = getRandom(leng);
                 x = document.getElementById(array[i]);
-                if (category[number] != undefined) {
-                    x.src = "." + category[number];
+                if (drawCard() != undefined) {
+                    x.src = "." + drawCard();
                     i = i + 1;
                 }
             }
@@ -93,21 +99,21 @@
     <button type="button" onclick="ten()">十連抽!</button>
     <button type="button" onclick="one()">單抽!</button>
     <h3>抽卡結果</h3>
-    <img id='img_results' style="width:300px;position:relative;">
+    <img id='img_results' style="width:120px;position:relative;">
     <table id='table_results'>
         <tr>
-            <td><img id='1' style="width:300px;position:relative;"></td>
-            <td><img id='2' style="width:300px;position:relative;"></td>
-            <td><img id='3' style="width:300px;position:relative;"></td>
-            <td><img id='4' style="width:300px;position:relative;"></td>
-            <td><img id='5' style="width:300px;position:relative;"></td>
+            <td><img id='1' style="width:120px;position:relative;"></td>
+            <td><img id='2' style="width:120px;position:relative;"></td>
+            <td><img id='3' style="width:120px;position:relative;"></td>
+            <td><img id='4' style="width:120px;position:relative;"></td>
+            <td><img id='5' style="width:120px;position:relative;"></td>
         </tr>
         <tr>
-            <td><img id='6' style="width:300px;position:relative;"></td>
-            <td><img id='7' style="width:300px;position:relative;"></td>
-            <td><img id='8' style="width:300px;position:relative;"></td>
-            <td><img id='9' style="width:300px;position:relative;"></td>
-            <td><img id='10' style="width:300px;position:relative;"></td>
+            <td><img id='6' style="width:120px;position:relative;"></td>
+            <td><img id='7' style="width:120px;position:relative;"></td>
+            <td><img id='8' style="width:120px;position:relative;"></td>
+            <td><img id='9' style="width:120px;position:relative;"></td>
+            <td><img id='10' style="width:120px;position:relative;"></td>
         </tr>
     </table>
 </body>
