@@ -8,6 +8,10 @@ h2 {
 label {
     color: #130303;
 }
+
+p {
+    font-family: 'Chilanka', cursive;
+}
 /*
 h4 {
     background-color: rgb(255,100,80);

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>抽卡</title>
     <link rel="stylesheet" type="text/css" href="static/card.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Chilanka&display=swap" rel="stylesheet">
 
 
     <script>
@@ -29,34 +29,40 @@
             return Math.floor(Math.random() * x);
         }
 
-        function drawCard() {
-            var R_card_scene = JSON.parse(GetJson("https://yylizh.github.io/static/R_category.json"));
-            var SR_card_scene = JSON.parse(GetJson("https://yylizh.github.io/static/SR_category.json"));
-            var SSR_card_scene = JSON.parse(GetJson("https://yylizh.github.io/static/SSR_category.json"));
-            var card_type = JSON.parse(GetJson("https://yylizh.github.io/static/cardType.json"));
+        var R_card_scene = JSON.parse(GetJson("./static/R_category.json"));
+        var SR_card_scene = JSON.parse(GetJson("./static/SR_category.json"));
+        var SSR_card_scene = JSON.parse(GetJson("./static/SSR_category.json"));
+        var card_type = JSON.parse(GetJson("./static/cardType.json"));
+
+        function drawCard(card_type,R_card_scene,SR_card_scene,SSR_card_scene) {
             var leng = getJsonLength(card_type);
             var number = getRandom(100);
             var card = card_type[number];
-            if (card=="R"){
+            if (card == "R") {
                 var output = R_card_scene[getRandom(getJsonLength(R_card_scene))];
-            }
-            else if (card=="SR"){
+            } else if (card == "SR") {
                 var output = SR_card_scene[getRandom(getJsonLength(SR_card_scene))];
-            }
-            else {
+            } else {
                 var output = SSR_card_scene[getRandom(getJsonLength(SSR_card_scene))];
             }
             return output;
         }
-        
 
+        
 
         function one() {
             single_draw = document.getElementById('img_results');
             single_draw.style.visibility = 'visible';
             ten_draw = document.getElementById('table_results');
             ten_draw.style.visibility = 'hidden';
-            single_draw.src = "." + drawCard();
+            var i = 0;
+            while (i == 0) {
+                var card = drawCard(card_type,R_card_scene,SR_card_scene,SSR_card_scene);
+                if (card != undefined) {
+                    single_draw.src = "." + card;
+                    i = i + 1;
+                }
+            }
         }
 
 
@@ -71,8 +77,9 @@
             var i = 0;
             while (i < 10) {
                 x = document.getElementById(array[i]);
-                if (drawCard() != undefined) {
-                    x.src = "." + drawCard();
+                var card = drawCard(card_type,R_card_scene,SR_card_scene,SSR_card_scene)
+                if (card != undefined) {
+                    x.src = "." + card;
                     i = i + 1;
                 }
             }
@@ -83,6 +90,7 @@
 <body>
     <h1>Uni's on air 抽卡模擬器</h1>
     <h2>機率為SSR:6% SR:9% R:85%</h2>
+    <p>by Echo 2020.8.13</p>
     <!--
     <form>
         <div>
