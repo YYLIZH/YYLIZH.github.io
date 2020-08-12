@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抽卡</title>
+    <link rel="stylesheet" type="text/css" href="static/card.css">
+
+
+
+    <script>
+        function GetJson(url) {
+            var request = new XMLHttpRequest();
+            request.open("get", url, false);
+            request.send(null);
+            return request.responseText;
+        }
+
+        function getJsonLength(json) {
+            var jsonLength = 0;
+            for (var i in json) {
+                jsonLength++;
+            }
+            return jsonLength;
+        }
+
+        function getRandom(x) {
+            return Math.floor(Math.random() * x);
+        }
+
+        function drawCard() {
+            var card_scene = JSON.parse(GetJson("https://yylizh.github.io/static/category.json"));
+            var card_type = JSON.parse(GetJson("https://yylizh.github.io/static/cardType.json"));
+            var leng = getJsonLength(card_type);
+            var number = getRandom(leng);
+        }
+
+
+        function one() {
+            single_draw = document.getElementById('img_results');
+            single_draw.style.visibility = 'visible';
+            ten_draw = document.getElementById('table_results');
+            ten_draw.style.visibility = 'hidden';
+            var url = "https://yylizh.github.io/static/category.json";
+            var category = JSON.parse(GetJson(url));
+            var leng = getJsonLength(category);
+            var number = getRandom(leng);
+            single_draw.src = "." + category[number];
+        }
+
+
+
+
+        function ten() {
+            single_draw = document.getElementById('img_results');
+            single_draw.src = "";
+            ten_draw = document.getElementById('table_results');
+            ten_draw.style.visibility = 'visible';
+            var array = new Array("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
+            var url = "https://yylizh.github.io/static/category.json";
+            var category = JSON.parse(GetJson(url));
+            var leng = getJsonLength(category);
+            var i = 0;
+            while (i < 10) {
+                var number = getRandom(leng);
+                x = document.getElementById(array[i]);
+                if (category[number] != undefined) {
+                    x.src = "." + category[number];
+                    i = i + 1;
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Uni's on air 抽卡模擬器</h1>
+    <h2>機率為SSR:6% SR:9% R:85%</h2>
+    <!--
+    <form>
+        <div>
+            <label for="one">單抽</label>
+            <input name="choice" id="one" type="radio" value="1">
+            <label for="ten">十連抽</label>
+            <input name="choice" id="ten" type="radio" value="10">
+        </div>
+
+        <button type="button" onclick="one()">抽!</button>
+    </form>
+    -->
+
+    <button type="button" onclick="ten()">十連抽!</button>
+    <button type="button" onclick="one()">單抽!</button>
+    <h3>抽卡結果</h3>
+    <img id='img_results' style="width:300px;position:relative;">
+    <table id='table_results'>
+        <tr>
+            <td><img id='1' style="width:300px;position:relative;"></td>
+            <td><img id='2' style="width:300px;position:relative;"></td>
+            <td><img id='3' style="width:300px;position:relative;"></td>
+            <td><img id='4' style="width:300px;position:relative;"></td>
+            <td><img id='5' style="width:300px;position:relative;"></td>
+        </tr>
+        <tr>
+            <td><img id='6' style="width:300px;position:relative;"></td>
+            <td><img id='7' style="width:300px;position:relative;"></td>
+            <td><img id='8' style="width:300px;position:relative;"></td>
+            <td><img id='9' style="width:300px;position:relative;"></td>
+            <td><img id='10' style="width:300px;position:relative;"></td>
+        </tr>
+    </table>
+</body>
+
+</html>
