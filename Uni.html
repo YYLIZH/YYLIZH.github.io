@@ -50,7 +50,7 @@
 
         
 
-        function one() {
+        function one(card_type,R_card_scene,SR_card_scene,SSR_card_scene) {
             single_draw = document.getElementById('img_results');
             single_draw.style.visibility = 'visible';
             ten_draw = document.getElementById('table_results');
@@ -68,7 +68,7 @@
 
 
 
-        function ten() {
+        function ten(card_type,R_card_scene,SR_card_scene,SSR_card_scene) {
             single_draw = document.getElementById('img_results');
             single_draw.src = "";
             ten_draw = document.getElementById('table_results');
@@ -104,8 +104,8 @@
     </form>
     -->
 
-    <button type="button" onclick="ten()">十連抽!</button>
-    <button type="button" onclick="one()">單抽!</button>
+    <button type="button" onclick="ten(card_type,R_card_scene,SR_card_scene,SSR_card_scene)">十連抽!</button>
+    <button type="button" onclick="one(card_type,R_card_scene,SR_card_scene,SSR_card_scene)">單抽!</button>
     <h3>抽卡結果</h3>
     <img id='img_results' style="width:120px;position:relative;">
     <table id='table_results'>
