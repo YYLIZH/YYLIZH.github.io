@@ -30,11 +30,11 @@
             return Math.floor(Math.random() * x);
         }
 
-        var five_card_scene = JSON.parse(GetJson("./static/Zambi/cards/five_category.json"));
-        var four_card_scene = JSON.parse(GetJson("./static/Zambi/cards/four_category.json"));
-        var three_card_scene = JSON.parse(GetJson("./static/Zambi/cards/three_category.json"));
-        var two_card_scene = JSON.parse(GetJson("./static/Zambi/cards/two_category.json"));
-        var card_type = JSON.parse(GetJson("./static/Zambi/cards/card_category.json"));
+        var five_card_scene = JSON.parse(GetJson("https://yylizh.github.io/static/Zambi/cards/five_category.json"));
+        var four_card_scene = JSON.parse(GetJson("https://yylizh.github.io/static/Zambi/cards/four_category.json"));
+        var three_card_scene = JSON.parse(GetJson("https://yylizh.github.io/static/Zambi/cards/three_category.json"));
+        var two_card_scene = JSON.parse(GetJson("https://yylizh.github.io/static/Zambi/cards/two_category.json"));
+        var card_type = JSON.parse(GetJson("https://yylizh.github.io/static/Zambi/cards/card_category.json"));
         
         
 
@@ -64,6 +64,7 @@
             var i = 0;
             while (i == 0) {
                 var card = drawCard(card_type, five_card_scene, four_card_scene, three_card_scene, two_card_scene);
+                
                 if (card != undefined) {
                     single_draw.src = "." + card;
                     i = i + 1;
