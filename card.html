@@ -51,8 +51,6 @@
         
 
         function one() {
-            single_draw = document.getElementById('img_results');
-            single_draw.style.visibility = 'visible';
             ten_draw = document.getElementById('table_results');
             ten_draw.style.visibility = 'hidden';
             var i = 0;
@@ -63,6 +61,8 @@
                     i = i + 1;
                 }
             }
+            single_draw = document.getElementById('img_results');
+            single_draw.style.visibility = 'visible';
         }
 
 
@@ -71,8 +71,6 @@
         function ten() {
             single_draw = document.getElementById('img_results');
             single_draw.src = "";
-            ten_draw = document.getElementById('table_results');
-            ten_draw.style.visibility = 'visible';
             var array = new Array("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
             var i = 0;
             while (i < 10) {
@@ -83,6 +81,8 @@
                     i = i + 1;
                 }
             }
+            ten_draw = document.getElementById('table_results');
+            ten_draw.style.visibility = 'visible';
         }
     </script>
 </head>
