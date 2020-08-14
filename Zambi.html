@@ -10,6 +10,7 @@
 
 
     <script>
+        
         function GetJson(url) {
             var request = new XMLHttpRequest();
             request.open("get", url, false);
@@ -29,11 +30,13 @@
             return Math.floor(Math.random() * x);
         }
 
-        var five_card_scene = JSON.parse(GetJson("./static/Zambi/five_category.json"));
-        var four_card_scene = JSON.parse(GetJson("./static/Zambi/four_category.json"));
-        var three_card_scene = JSON.parse(GetJson("./static/Zambi/three_category.json"));
-        var two_card_scene = JSON.parse(GetJson("./static/Zambi/two_category.json"));
-        var card_type = JSON.parse(GetJson("./static/Zambi/cardType.json"));
+        var five_card_scene = JSON.parse(GetJson("./static/Zambi/cards/five_category.json"));
+        var four_card_scene = JSON.parse(GetJson("./static/Zambi/cards/four_category.json"));
+        var three_card_scene = JSON.parse(GetJson("./static/Zambi/cards/three_category.json"));
+        var two_card_scene = JSON.parse(GetJson("./static/Zambi/cards/two_category.json"));
+        var card_type = JSON.parse(GetJson("./static/Zambi/cards/card_category.json"));
+        
+        
 
         function drawCard(card_type, five_card_scene, four_card_scene, three_card_scene, two_card_scene) {
             var leng = getJsonLength(card_type);
@@ -51,7 +54,7 @@
             return output;
         }
 
-
+        
 
         function one(card_type, five_card_scene, four_card_scene, three_card_scene, two_card_scene) {
             single_draw = document.getElementById('img_results');
